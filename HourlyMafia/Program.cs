@@ -11,6 +11,7 @@ namespace HourlyMafia
             var directory = System.IO.Path.GetDirectoryName(path);
             var fullPath = directory + "\\KolMafia.jar";
             System.IO.File.Delete(fullPath);
+            Console.WriteLine("Downloading latest hourly build.,,");
             var stringToMatch = @"<a href=""http://builds.kolmafia.us/KoLmafia-";
             using (var wc = new System.Net.WebClient())
             {
@@ -21,8 +22,10 @@ namespace HourlyMafia
                 var indexOfSecondQuote = matchingLine.IndexOf('"', indexOfURL);
                 var url = matchingLine.Substring(indexOfURL, indexOfSecondQuote - indexOfURL);
                 wc.DownloadFile(url, fullPath);
-                System.Diagnostics.Process.Start(fullPath);
+                Console.WriteLine("Download complete.");
             }
+            Console.WriteLine("Launching latest build.");
+            System.Diagnostics.Process.Start(fullPath);
         }
     }
 }
