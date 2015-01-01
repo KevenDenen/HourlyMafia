@@ -17,9 +17,9 @@ namespace HourlyMafia
                 var data = wc.DownloadString("http://builds.kolmafia.us/");
                 var matchingLine = data.Split('\n').ToList<String>()
                     .Where(stringToCheck => stringToCheck.Contains(stringToMatch)).FirstOrDefault();
-                var indexOfFirstQuote = matchingLine.IndexOf('"') + 1;
-                var indexOfSecondQuote = matchingLine.IndexOf('"', indexOfFirstQuote);
-                var url = matchingLine.Substring(indexOfFirstQuote, indexOfSecondQuote - indexOfFirstQuote);
+                var indexOfURL = matchingLine.IndexOf('"') + 1;
+                var indexOfSecondQuote = matchingLine.IndexOf('"', indexOfURL);
+                var url = matchingLine.Substring(indexOfURL, indexOfSecondQuote - indexOfURL);
                 wc.DownloadFile(url, fullPath);
                 System.Diagnostics.Process.Start(fullPath);
             }
