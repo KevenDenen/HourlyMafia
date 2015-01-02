@@ -16,7 +16,7 @@ namespace HourlyMafia
             using (var wc = new System.Net.WebClient())
             {
                 var data = wc.DownloadString("http://builds.kolmafia.us/");
-                var matchingLine = data.Split('\n').ToList<String>()
+                var matchingLine = data.Split('\n')
                     .Where(stringToCheck => stringToCheck.Contains(stringToMatch)).FirstOrDefault();
                 var indexOfURL = matchingLine.IndexOf('"') + 1;
                 var indexOfSecondQuote = matchingLine.IndexOf('"', indexOfURL);
